@@ -9,7 +9,7 @@ import javax.persistence.Id;
 
 @Setter
 @Getter
-@Entity
+
 public class UriMapper {
 
 	private String shortURL;
