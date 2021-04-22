@@ -25,9 +25,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class UrlShorterRestController {
     private static final Logger logger = LogManager.getLogger(UrlShorterRestController.class);
 
-//    private final Map<String, ShortenUrl> shortenUrlList = new HashMap<>();
 
-    ShortenUrl shortenUrl;
     @RequestMapping(value = "/shortenurl", method = RequestMethod.POST)
     public ResponseEntity<Object> getShortenUrl(@RequestBody ShortenUrl shortenUrl) {
         try (Connection con = DriverManager.getConnection("jdbc:h2:file:~/urls;DB_CLOSE_DELAY=-1", "root", "root")) {
@@ -50,12 +48,9 @@ public class UrlShorterRestController {
         return new ResponseEntity<>(shortenUrl, HttpStatus.OK);
     }
 
-//    @RequestMapping(value = "/s/{randomstring}", method = RequestMethod.GET)
-//    public void getLong_Url(HttpServletResponse response, @PathVariable("randomstring") String randomString) {
     @RequestMapping(value = "/s/{randomstring}", method = RequestMethod.GET)
     public void getLong_Url(HttpServletResponse response, @PathVariable("randomstring") String randomString) {
         try (Connection con = DriverManager.getConnection("jdbc:h2:file:~/urls;DB_CLOSE_DELAY=-1;DATABASE_TO_UPPER=false", "root", "root")) {
-
             Statement statement = con.createStatement();
             ResultSet resultSet = statement.executeQuery("SELECT * FROM  URLS");
             while (resultSet.next()) {
@@ -65,12 +60,10 @@ public class UrlShorterRestController {
                 if (temp.equals(k)) {
                     String longUrl = resultSet.getString("long_url");
                     longUrl = longUrl.trim();
-//                    response.sendRedirect();
+
                     response.sendRedirect(longUrl);
                 }
             }
-
-//            response.sendRedirect(shortenUrlList.get(randomString).getLong_url());
 
         } catch (SQLException | IOException e) {
             logger.error("Exception in: " + e.getMessage());
@@ -86,10 +79,6 @@ public class UrlShorterRestController {
             logger.error(e.getMessage());
             System.out.println(e.getMessage());
         }
-
-
-//        shortenUrl.setShort_url("http://localhost:8080/s/" + randomChar);
-//        shortenUrlList.put(randomChar, shortenUrl);
     }
 
     private String getRandomChars() {
