@@ -29,7 +29,6 @@ public class ShortenerService {
             return LOCALHOST_URL + createShortUrl(shortenUrl.getId());
         } else {
             return LOCALHOST_URL + createShortUrl(optionalShortenUrl.get().getId());
-
         }
     }
 
