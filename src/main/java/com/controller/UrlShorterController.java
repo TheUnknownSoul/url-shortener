@@ -18,17 +18,10 @@ public class UrlShorterController {
 
     @PostMapping(value = "/shortenurl")
     public String getShortenUrl(@RequestBody String longUrl) {
-        String s = "";
-              s = longUrl.replaceAll("[\"]+", "");
-
-//        Pattern p = Pattern.compile("^[a-zA-Z ]*$");
-//        Matcher m = p.matcher(longUrl);
+        String s = longUrl.replaceAll("[\"]+", "");
         System.out.println(s);
-//        if (m.matches()){
         return shortenerService.getShortenUrl(s);
-//        }else {
-//            return "";
-//        }
+
     }
 
     @GetMapping(value = "/{shortUrl}")
