@@ -20,8 +20,9 @@ Notice, that the service works while app is running. After rebooting database cl
 will be lost.
 
 # Algorithm 
-Algorithm is based on id of url in database. For example, you enter :"https://www.baeldung.com/".
-ID will 1. Then this id divides on number 66 (number of possible chars) and in chain of possible char returns
+Algorithm is based on id of url in database. For example, you enter :
+`"https://www.baeldung.com/"`.
+ID will be 1. Then this id divides on number 66 (number of possible chars) and in chain of possible char returns
 index of remainder. Possible chars:
 `"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"`
 
@@ -29,4 +30,4 @@ index of remainder. Possible chars:
 Clone this project. Then run application in IDE or build it with Maven (stage package) and run 
 with the following command :
 `java -jar url-shortener-1.0.jar`
-Open browser and enter in address bar: http://localhost:8080/.
+Open browser and enter in address bar: `http://localhost:8080/`.
