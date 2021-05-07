@@ -1,5 +1,7 @@
 package com.service;
 
+
+import com.config.ServiceConfig;
 import com.model.ShortenUrl;
 import com.repository.UrlRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,12 +14,13 @@ import java.util.Optional;
 @Service
 public class ShortenerService {
 
-    private static final String LOCALHOST_URL = "http://localhost:8080/";
     private static final String POSSIBLE_CHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
 
     @Autowired
     UrlRepository repository;
 
+    @Autowired
+    ServiceConfig serviceConfig;
 
     public String getShortenUrl(String longUrl) {
         Optional<ShortenUrl> optionalShortenUrl = repository.findByLongUrl(longUrl);
@@ -26,9 +29,9 @@ public class ShortenerService {
                     .longUrl(longUrl)
                     .build();
             shortenUrl = repository.save(shortenUrl);
-            return LOCALHOST_URL + createShortUrl(shortenUrl.getId());
+            return serviceConfig.LOCALHOST_URL + createShortUrl(shortenUrl.getId());
         } else {
-            return LOCALHOST_URL + createShortUrl(optionalShortenUrl.get().getId());
+            return serviceConfig.LOCALHOST_URL + createShortUrl(optionalShortenUrl.get().getId());
         }
     }
 

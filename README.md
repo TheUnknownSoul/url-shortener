@@ -19,6 +19,10 @@ Take this url and type it in new tab of your browser.
 Notice, that the service works while app is running. After rebooting database cleans and all information 
 will be lost.
 
+You can change port changes string via application starts  `application.LOCALHOST_URL=http://localhost:{your port}/ `
+in file `application.properties`.
+
+
 # Algorithm 
 Algorithm is based on id of url in database. For example, you enter :
 `"https://www.baeldung.com/"`.
